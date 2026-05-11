@@ -1,0 +1,301 @@
+/* ============================================================================
+   Lobot.io — Colors & Type
+   Terminal-flavored, grayscale, dark by default. Pure monospace stack.
+   Adapted from www-design/colors_and_type.css:
+     - @font-face URLs rewritten for assets/css/ → assets/fonts/ layout
+     - Only JetBrains Mono weights 400/500/700 shipped; IBM Plex @font-face
+       entries removed (system mono covers the fallback stack).
+   ============================================================================ */
+
+/* ---------- Fonts --------------------------------------------------------- */
+@font-face { font-family: "JetBrains Mono"; src: url("../fonts/JetBrainsMono-Regular.woff2") format("woff2");       font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fonts/JetBrainsMono-Italic.woff2") format("woff2");        font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fonts/JetBrainsMono-Medium.woff2") format("woff2");        font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fonts/JetBrainsMono-MediumItalic.woff2") format("woff2");  font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fonts/JetBrainsMono-Bold.woff2") format("woff2");          font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fonts/JetBrainsMono-BoldItalic.woff2") format("woff2");    font-weight: 700; font-style: italic; font-display: swap; }
+
+/* ---------- Dark theme (default) ------------------------------------------ */
+:root,
+[data-theme="dark"] {
+  /* Pure grayscale scale — phosphor-free, just stops of gray. */
+  --gray-0:  #000000;   /* terminal black */
+  --gray-1:  #0a0a0a;   /* page background */
+  --gray-2:  #111111;   /* surface */
+  --gray-3:  #1a1a1a;   /* surface raised */
+  --gray-4:  #242424;   /* border subtle */
+  --gray-5:  #2e2e2e;   /* border */
+  --gray-6:  #404040;   /* divider strong */
+  --gray-7:  #6b6b6b;   /* muted fg */
+  --gray-8:  #9a9a9a;   /* secondary fg */
+  --gray-9:  #c7c7c7;   /* tertiary fg */
+  --gray-10: #e6e6e6;   /* primary fg */
+  --gray-11: #f5f5f5;   /* high-contrast fg */
+  --gray-12: #ffffff;   /* pure white */
+
+  /* Semantic — foreground */
+  --fg-1: var(--gray-11);   /* primary text */
+  --fg-2: var(--gray-9);    /* secondary text */
+  --fg-3: var(--gray-8);    /* muted text */
+  --fg-4: var(--gray-7);    /* hint / placeholder */
+  --fg-inverse: var(--gray-1);
+
+  /* Semantic — background */
+  --bg-1: var(--gray-1);    /* canvas */
+  --bg-2: var(--gray-2);    /* surface */
+  --bg-3: var(--gray-3);    /* raised surface */
+  --bg-inverse: var(--gray-11);
+
+  /* Semantic — line */
+  --border-1: var(--gray-4);   /* subtle */
+  --border-2: var(--gray-5);   /* default */
+  --border-3: var(--gray-6);   /* strong */
+
+  /* Cursor / selection — the only "accent" surfaces */
+  --cursor:    var(--gray-11);
+  --selection: var(--gray-6);
+
+  /* State semantics — still grayscale; differ in weight, not hue */
+  --status-ok:    var(--gray-11);
+  --status-warn:  var(--gray-9);
+  --status-err:   var(--gray-12);
+  --status-info:  var(--gray-8);
+}
+
+/* ---------- Light theme --------------------------------------------------- */
+[data-theme="light"] {
+  --gray-0:  #ffffff;
+  --gray-1:  #fafafa;
+  --gray-2:  #f4f4f4;
+  --gray-3:  #ececec;
+  --gray-4:  #dcdcdc;
+  --gray-5:  #c8c8c8;
+  --gray-6:  #a8a8a8;
+  --gray-7:  #818181;
+  --gray-8:  #5f5f5f;
+  --gray-9:  #3d3d3d;
+  --gray-10: #1f1f1f;
+  --gray-11: #0d0d0d;
+  --gray-12: #000000;
+
+  --fg-1: var(--gray-11);
+  --fg-2: var(--gray-9);
+  --fg-3: var(--gray-8);
+  --fg-4: var(--gray-7);
+  --fg-inverse: var(--gray-1);
+
+  --bg-1: var(--gray-1);
+  --bg-2: var(--gray-2);
+  --bg-3: var(--gray-3);
+  --bg-inverse: var(--gray-11);
+
+  --border-1: var(--gray-4);
+  --border-2: var(--gray-5);
+  --border-3: var(--gray-6);
+
+  --cursor:    var(--gray-11);
+  --selection: var(--gray-5);
+
+  --status-ok:    var(--gray-11);
+  --status-warn:  var(--gray-9);
+  --status-err:   var(--gray-12);
+  --status-info:  var(--gray-8);
+}
+
+/* ---------- Type ---------------------------------------------------------- */
+:root {
+  /* Stacks — everything is mono. There is no sans serif in the system. */
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono",
+                  Menlo, Consolas, monospace;
+  --font-display: "JetBrains Mono", ui-monospace, monospace;
+  --font-body:    "JetBrains Mono", ui-monospace, monospace;
+  --font-code:    "JetBrains Mono", ui-monospace, monospace;
+
+  /* Scale — tight, terminal-y. 14/16/20/24/32/48. */
+  --fs-xs:   12px;
+  --fs-sm:   13px;
+  --fs-base: 14px;
+  --fs-md:   16px;
+  --fs-lg:   20px;
+  --fs-xl:   24px;
+  --fs-2xl:  32px;
+  --fs-3xl:  48px;
+  --fs-4xl:  64px;
+
+  /* Weights — JetBrains Mono ships 400/500/700. */
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-bold:    700;
+
+  /* Line height — slightly tighter than browser default; terminals are dense. */
+  --lh-tight: 1.2;
+  --lh-snug:  1.4;
+  --lh-base:  1.55;
+  --lh-loose: 1.75;
+
+  /* Letter spacing — used sparingly for ALL-CAPS chrome labels. */
+  --ls-tight:  -0.01em;
+  --ls-normal: 0;
+  --ls-wide:   0.08em;
+
+  /* ---------- Spacing ----------------------------------------------------- */
+  /* 4px grid. Use these tokens instead of raw px. */
+  --sp-0:  0px;
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  20px;
+  --sp-6:  24px;
+  --sp-7:  32px;
+  --sp-8:  40px;
+  --sp-9:  48px;
+  --sp-10: 64px;
+  --sp-11: 80px;
+  --sp-12: 96px;
+
+  /* Border radius — terminal UI is sharp. 0 or 2px only. */
+  --radius-0: 0px;
+  --radius-1: 2px;
+  --radius-2: 4px;     /* rare; for tag-like elements */
+
+  /* Borders */
+  --bw-1: 1px;
+  --bw-2: 2px;
+
+  /* Shadows — minimal. */
+  --shadow-none: none;
+  --shadow-1: 0 1px 0 0 var(--border-1);
+  --shadow-2: 0 0 0 1px var(--border-2);
+  --shadow-3: 0 8px 32px -8px rgba(0,0,0,0.6);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in:  cubic-bezier(0.4, 0, 1, 1);
+  --dur-fast: 80ms;
+  --dur-base: 140ms;
+  --dur-slow: 240ms;
+
+  /* Cursor blink — terminal hallmark */
+  --blink-dur: 1.05s;
+}
+
+/* ---------- Semantic element styles --------------------------------------- */
+html, body {
+  background: var(--bg-1);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-base);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--selection); color: var(--fg-1); }
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--fg-1);
+  margin: 0;
+}
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--fg-1);
+  margin: 0;
+}
+h3, .h3 {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+  margin: 0;
+}
+h4, .h4 {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+  margin: 0;
+}
+
+p, .p {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+  color: var(--fg-2);
+  margin: 0;
+}
+
+small, .small, .caption {
+  font-size: var(--fs-xs);
+  color: var(--fg-3);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+code, .code, kbd, pre {
+  font-family: var(--font-code);
+  font-size: 0.95em;
+  color: var(--fg-1);
+}
+
+kbd {
+  display: inline-block;
+  padding: 0 6px;
+  border: 1px solid var(--border-2);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-1);
+  background: var(--bg-2);
+  font-size: var(--fs-xs);
+  color: var(--fg-2);
+}
+
+a {
+  color: var(--fg-1);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+a:hover { color: var(--fg-2); }
+
+/* The prompt is a brand primitive. Use `.prompt::before` to drop it in. */
+.prompt::before {
+  content: "lobot:~$ ";
+  color: var(--fg-3);
+  user-select: none;
+}
+
+/* Blinking block cursor — the universal "active line" indicator. */
+.cursor,
+.cursor-block {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  background: var(--cursor);
+  vertical-align: text-bottom;
+  animation: lobot-blink var(--blink-dur) steps(1, end) infinite;
+}
+@keyframes lobot-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor,
+  .cursor-block {
+    animation: none;
+    opacity: 1;
+  }
+}
