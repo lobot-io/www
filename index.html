@@ -17,6 +17,7 @@
 </head>
 <body>
 
+<!-- ── top bar ─────────────────────────────────────────────────────────── -->
 <header class="topbar">
   <div class="topbar-inner">
     <a href="/" class="brand" aria-label="lobot.io">
@@ -28,19 +29,81 @@
   </div>
 </header>
 
-<div class="shell">
-  <section class="hero" aria-label="lobot.io">
-    <div class="promptline" aria-hidden="true">
-      <span class="prompt-tok">lobot:~$</span>
-      <span class="cursor-block"></span>
-    </div>
-  </section>
+<!-- ── main content ─────────────────────────────────────────────────────── -->
+<main class="main">
 
-  <footer class="footer">
-    <span>// lobot.io &middot; 2026</span>
-    <span><a href="https://github.com/lobot-io" rel="noopener noreferrer">github</a></span>
-  </footer>
-</div>
+  <!-- capsulebot — decorative, right side, reduced-motion CSS swap -->
+  <div class="capsulebot-wrap" aria-hidden="true">
+    <img class="mascot mascot-anim"   src="assets/mascots/lobot-capsulebot-anim.svg" alt="" width="180" height="180">
+    <img class="mascot mascot-static" src="assets/mascots/lobot-capsulebot.svg"      alt="" width="180" height="180">
+  </div>
+
+  <!-- centered shell — prompt sits at the bottom -->
+  <div class="shell main-shell">
+    <div class="prompt-wrap">
+      <div class="promptline" aria-hidden="true">
+        <span class="prompt-tok">lobot:~$</span>
+        <span class="cursor-block"></span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── statusline ── fixed to bottom, powerline-flavored ───────────────── -->
+<!--
+  STUB: all metric values are placeholders.
+  Segment key:
+    c1  / c2  — internal counters (ambiguous by design)
+    evt       — event queue depth
+    q         — job queue length
+    p50       — latency percentile (ambiguous which)
+  Replace "--" with live data when lobot comes online.
+-->
+<footer class="statusline" role="contentinfo" aria-label="system status">
+  <div class="statusline-inner">
+
+    <div class="sl-left">
+      <!-- warning: lobot offline -->
+      <span class="sl-seg sl-warn" aria-live="polite" aria-label="lobot is not online yet">
+        <span class="warn-glyph" aria-hidden="true">!</span>
+        <span class="warn-text">lobot offline</span>
+      </span>
+
+      <span class="sl-sep sl-hide-xs" aria-hidden="true">│</span>
+      <span class="sl-seg sl-muted sl-hide-xs" aria-hidden="true">
+        c1 <span class="sl-bar">░░░░░░</span> <span class="sl-val">--</span>
+      </span>
+
+      <span class="sl-sep sl-hide-xs" aria-hidden="true">│</span>
+      <span class="sl-seg sl-muted sl-hide-xs" aria-hidden="true">
+        c2 <span class="sl-bar">░░░░░░</span> <span class="sl-val">--</span>
+      </span>
+
+      <span class="sl-sep sl-hide-sm" aria-hidden="true">│</span>
+      <span class="sl-seg sl-muted sl-hide-sm" aria-hidden="true">
+        evt <span class="sl-val">--</span>
+      </span>
+
+      <span class="sl-sep sl-hide-sm" aria-hidden="true">│</span>
+      <span class="sl-seg sl-muted sl-hide-sm" aria-hidden="true">
+        q <span class="sl-val">--</span>
+      </span>
+
+      <span class="sl-sep sl-hide-md" aria-hidden="true">│</span>
+      <span class="sl-seg sl-muted sl-hide-md" aria-hidden="true">
+        p50 <span class="sl-val">--</span>
+      </span>
+    </div>
+
+    <div class="sl-right">
+      <span class="sl-seg sl-muted">lobot.io · 2026</span>
+      <span class="sl-sep" aria-hidden="true">│</span>
+      <a href="https://github.com/lobot-io" class="sl-seg sl-link" rel="noopener noreferrer">gh</a>
+    </div>
+
+  </div>
+</footer>
 
 <script>
   (function () {
