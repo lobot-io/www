@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 — command not found · lobot.io</title>
+  <meta name="description" content="That path doesn't exist on lobot.io.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/css/colors_and_type.css">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function () {
+      var t = localStorage.getItem('lobot-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    }());
+  </script>
+</head>
+<body>
+
+<!-- ── top bar ─────────────────────────────────────────────────────────── -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="brand" aria-label="lobot.io home">
+      <span aria-hidden="true">$_</span><span class="dim">lobot.io</span>
+    </a>
+    <button class="menu-btn" id="menu-btn" aria-label="toggle navigation" aria-expanded="false">[ ≡ ]</button>
+    <nav class="nav" id="main-nav" aria-label="site navigation">
+      <a href="/">home</a>
+      <a href="/#services">services</a>
+      <a href="/#notes">notes</a>
+      <a href="https://github.com/lobot-io" rel="noopener noreferrer">git</a>
+      <button class="theme-btn" id="theme-btn" aria-label="toggle theme">◐ dark</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ── content shell ────────────────────────────────────────────────────── -->
+<div class="shell">
+  <main class="not-found" aria-labelledby="err-heading">
+
+    <p class="err-line" aria-hidden="true">lobot:~$ cd <span id="bad-path"></span></p>
+    <p class="err-line" aria-hidden="true">bash: cd: <span id="bad-path-2"></span>: No such file or directory</p>
+
+    <h1 id="err-heading"><span class="dim">404 —</span> command not found.</h1>
+
+    <p>That path doesn't exist here. Maybe it moved, maybe it never shipped.<br>
+    The rack knows nothing of it.</p>
+
+    <a href="/" class="back">$ cd ~  # go home</a>
+
+  </main>
+
+  <footer class="footer">
+    <span>// lobot.io &middot; 2026 &middot; <span style="opacity:0.6">steven, in the basement</span></span>
+    <span>
+      <a href="https://github.com/lobot-io" rel="noopener noreferrer">github</a>
+      <span class="sep">·</span>
+      <a href="/">↩ home</a>
+    </span>
+  </footer>
+</div>
+
+<script>
+  /* Show the bad path from window.location */
+  (function () {
+    var p = window.location.pathname || '/unknown';
+    document.getElementById('bad-path').textContent = p;
+    document.getElementById('bad-path-2').textContent = p;
+  }());
+
+  /* Theme toggle */
+  (function () {
+    var btn = document.getElementById('theme-btn');
+    var html = document.documentElement;
+
+    function applyTheme(t) {
+      html.setAttribute('data-theme', t);
+      localStorage.setItem('lobot-theme', t);
+      btn.textContent = t === 'dark' ? '◐ dark' : '◑ light';
+    }
+
+    btn.addEventListener('click', function () {
+      applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+
+    var saved = localStorage.getItem('lobot-theme') || 'dark';
+    btn.textContent = saved === 'dark' ? '◐ dark' : '◑ light';
+  }());
+
+  /* Mobile menu */
+  (function () {
+    var menuBtn = document.getElementById('menu-btn');
+    var nav = document.getElementById('main-nav');
+
+    menuBtn.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuBtn.textContent = open ? '[ × ]' : '[ ≡ ]';
+    });
+  }());
+</script>
+
+</body>
+</html>
