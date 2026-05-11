@@ -3,12 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>lobot.io — homelab, on purpose.</title>
-  <meta name="description" content="A long-running homelab — home automation, self-hosted services, and notes from the rack in the basement. Built slowly, kept boring.">
+  <title>lobot.io</title>
+  <meta name="description" content="homelab, on purpose.">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="assets/css/colors_and_type.css">
   <link rel="stylesheet" href="style.css">
-  <!-- Apply saved theme before first paint to prevent flash -->
   <script>
     (function () {
       var t = localStorage.getItem('lobot-theme') || 'dark';
@@ -18,304 +17,45 @@
 </head>
 <body>
 
-<!-- ── top bar ─────────────────────────────────────────────────────────── -->
 <header class="topbar">
   <div class="topbar-inner">
-    <a href="/" class="brand" aria-label="lobot.io home">
+    <a href="/" class="brand" aria-label="lobot.io">
       <span aria-hidden="true">$_</span><span class="dim">lobot.io</span>
     </a>
-    <button class="menu-btn" id="menu-btn" aria-label="toggle navigation" aria-expanded="false">[ ≡ ]</button>
-    <nav class="nav" id="main-nav" aria-label="site navigation">
-      <a href="#services">services</a>
-      <a href="#notes">notes</a>
-      <a href="https://github.com/lobot-io" rel="noopener noreferrer">git</a>
+    <nav class="nav" aria-label="site navigation">
       <button class="theme-btn" id="theme-btn" aria-label="toggle theme">◐ dark</button>
     </nav>
   </div>
 </header>
 
-<!-- ── content shell ────────────────────────────────────────────────────── -->
 <div class="shell">
-
-  <!-- ── hero ─────────────────────────────────────────────────────────── -->
-  <section class="hero" aria-labelledby="hero-heading">
-    <div class="hero-layout">
-      <div class="hero-copy">
-        <!-- typing prompt line — hidden from AT, decorative -->
-        <div class="promptline" aria-hidden="true">
-          <span class="prompt-tok">lobot:~$</span>
-          <span class="cmd" id="typed-cmd"></span>
-          <span class="cursor-block"></span>
-        </div>
-
-        <h1 id="hero-heading">lobot.io<br><span class="dim">homelab, on purpose.</span></h1>
-
-        <p class="lead">
-          A long-running collection of home-server projects, automations, and notes
-          from the rack in the basement. Built slowly, kept boring, documented when convenient.
-        </p>
-
-        <div class="cta">
-          <a href="#services" class="btn primary">view services →</a>
-          <a href="#notes" class="btn ghost">read the log</a>
-        </div>
-      </div>
-
-      <!-- animated mascot; swapped for static when prefers-reduced-motion -->
-      <div class="mascot-wrap" aria-hidden="true">
-        <img class="mascot mascot-anim"
-             src="assets/mascots/lobot-classicbot-anim.svg"
-             alt="" width="140" height="140">
-        <img class="mascot mascot-static"
-             src="assets/mascots/lobot-classicbot.svg"
-             alt="" width="140" height="140">
-      </div>
+  <section class="hero" aria-label="lobot.io">
+    <div class="promptline" aria-hidden="true">
+      <span class="prompt-tok">lobot:~$</span>
+      <span class="cursor-block"></span>
     </div>
   </section>
 
-  <!-- ── // services ───────────────────────────────────────────────────── -->
-  <!-- STUB: replace rows with live data; mark each stub with data-stub="true" -->
-  <section class="section" id="services" aria-labelledby="services-heading">
-    <div class="section-hd">
-      <span class="label" aria-hidden="true">// 01</span>
-      <h2 id="services-heading">services currently running</h2>
-    </div>
-
-    <div class="svc-grid" role="list">
-
-      <!-- STUB -->
-      <div class="svc-card" role="listitem" data-stub="true">
-        <div class="svc-hd">
-          <span class="svc-name">pihole-ftl</span>
-          <span class="svc-status"><span class="glyph" aria-label="up">●</span> UP</span>
-        </div>
-        <p class="svc-desc">Network-wide DNS sinkhole. Blocks ads and trackers for everything on the LAN.</p>
-        <div class="svc-ft">
-          <span>v5.18.3</span><span class="sep">·</span><span>12d 04h</span>
-        </div>
-      </div>
-
-      <!-- STUB -->
-      <div class="svc-card" role="listitem" data-stub="true">
-        <div class="svc-hd">
-          <span class="svc-name">home-assistant</span>
-          <span class="svc-status"><span class="glyph" aria-label="up">●</span> UP</span>
-        </div>
-        <p class="svc-desc">Automations for lights, climate, presence. Hosts Zigbee2MQTT and Node-RED.</p>
-        <div class="svc-ft">
-          <span>2024.5.1</span><span class="sep">·</span><span>12d 04h</span>
-        </div>
-      </div>
-
-      <!-- STUB -->
-      <div class="svc-card" role="listitem" data-stub="true">
-        <div class="svc-hd">
-          <span class="svc-name">nextcloud</span>
-          <span class="svc-status"><span class="glyph" aria-label="up">●</span> UP</span>
-        </div>
-        <p class="svc-desc">Personal file sync, photos, notes. Lives on the NAS.</p>
-        <div class="svc-ft">
-          <span>v27.1.4</span><span class="sep">·</span><span>12d 04h</span>
-        </div>
-      </div>
-
-      <!-- STUB -->
-      <div class="svc-card" role="listitem" data-stub="true">
-        <div class="svc-hd">
-          <span class="svc-name">backup-rsync</span>
-          <span class="svc-status"><span class="glyph" aria-label="degraded">◐</span> DEGRADED</span>
-        </div>
-        <p class="svc-desc">Nightly cold-storage sync to offline disk. Currently retrying after a stale lock.</p>
-        <div class="svc-ft">
-          <span>—</span><span class="sep">·</span><span>last 19h</span>
-        </div>
-      </div>
-
-      <!-- STUB -->
-      <div class="svc-card" role="listitem" data-stub="true">
-        <div class="svc-hd">
-          <span class="svc-name">frigate-nvr</span>
-          <span class="svc-status"><span class="glyph" aria-label="up">●</span> UP</span>
-        </div>
-        <p class="svc-desc">Local NVR with object detection on a Coral TPU. Records driveway and porch.</p>
-        <div class="svc-ft">
-          <span>0.13.2</span><span class="sep">·</span><span>12d 04h</span>
-        </div>
-      </div>
-
-      <!-- STUB -->
-      <div class="svc-card" role="listitem" data-stub="true">
-        <div class="svc-hd">
-          <span class="svc-name">tailscale-exit</span>
-          <span class="svc-status"><span class="glyph" aria-label="up">●</span> UP</span>
-        </div>
-        <p class="svc-desc">Mesh VPN exit node. Lets the phone hit the rack from anywhere.</p>
-        <div class="svc-ft">
-          <span>1.66.1</span><span class="sep">·</span><span>12d 04h</span>
-        </div>
-      </div>
-
-      <!-- STUB -->
-      <div class="svc-card" role="listitem" data-stub="true">
-        <div class="svc-hd">
-          <span class="svc-name">nas-mount</span>
-          <span class="svc-status"><span class="glyph" aria-label="down">○</span> DOWN</span>
-        </div>
-        <p class="svc-desc">ZFS mirror over NFS. Cabled but unreachable since the switch reboot.</p>
-        <div class="svc-ft">
-          <span>—</span><span class="sep">·</span><span>—</span>
-        </div>
-      </div>
-
-      <!-- STUB -->
-      <div class="svc-card" role="listitem" data-stub="true">
-        <div class="svc-hd">
-          <span class="svc-name">mqtt-bridge</span>
-          <span class="svc-status"><span class="glyph" aria-label="off">○</span> OFF</span>
-        </div>
-        <p class="svc-desc">Mosquitto broker bridging Zigbee devices into Home Assistant. Off until rebuild.</p>
-        <div class="svc-ft">
-          <span>v1.6.15</span><span class="sep">·</span><span>manual</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ── // notes ─────────────────────────────────────────────────────── -->
-  <!-- STUB: replace hrefs and content with real post links -->
-  <section class="section" id="notes" aria-labelledby="notes-heading">
-    <div class="section-hd">
-      <span class="label" aria-hidden="true">// 02</span>
-      <h2 id="notes-heading">notes from the rack</h2>
-    </div>
-
-    <div class="log">
-
-      <!-- STUB -->
-      <div class="log-row" data-stub="true">
-        <span class="date">2026-05-04</span>
-        <a href="#" class="title">moving the rack to the basement (again)</a>
-        <span class="tag">ops</span>
-      </div>
-
-      <!-- STUB -->
-      <div class="log-row" data-stub="true">
-        <span class="date">2026-04-22</span>
-        <a href="#" class="title">frigate + coral: it finally sees the cat</a>
-        <span class="tag">ml</span>
-      </div>
-
-      <!-- STUB -->
-      <div class="log-row" data-stub="true">
-        <span class="date">2026-04-08</span>
-        <a href="#" class="title">rebuilding home-assistant from scratch</a>
-        <span class="tag">automation</span>
-      </div>
-
-      <!-- STUB -->
-      <div class="log-row" data-stub="true">
-        <span class="date">2026-03-19</span>
-        <a href="#" class="title">pihole gravity list, 2026 edition</a>
-        <span class="tag">dns</span>
-      </div>
-
-      <!-- STUB -->
-      <div class="log-row" data-stub="true">
-        <span class="date">2026-03-01</span>
-        <a href="#" class="title">tailscale exit node: my phone, in the LAN</a>
-        <span class="tag">network</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ── footer ───────────────────────────────────────────────────────── -->
   <footer class="footer">
-    <span>// lobot.io &middot; 2026 &middot; <span style="opacity:0.6">steven, in the basement</span></span>
-    <span>
-      <a href="https://github.com/lobot-io" rel="noopener noreferrer">github</a>
-      <span class="sep">·</span>
-      <a href="#hero">↑ top</a>
-    </span>
+    <span>// lobot.io &middot; 2026</span>
+    <span><a href="https://github.com/lobot-io" rel="noopener noreferrer">github</a></span>
   </footer>
-
-</div><!-- /shell -->
+</div>
 
 <script>
-  /* ── Theme toggle ────────────────────────────────────────────────────── */
   (function () {
     var btn = document.getElementById('theme-btn');
     var html = document.documentElement;
-
     function applyTheme(t) {
       html.setAttribute('data-theme', t);
       localStorage.setItem('lobot-theme', t);
       btn.textContent = t === 'dark' ? '◐ dark' : '◑ light';
     }
-
     btn.addEventListener('click', function () {
       applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     });
-
-    /* Sync label with whatever was restored by the inline script in <head> */
     var saved = localStorage.getItem('lobot-theme') || 'dark';
     btn.textContent = saved === 'dark' ? '◐ dark' : '◑ light';
-  }());
-
-  /* ── Mobile menu toggle ──────────────────────────────────────────────── */
-  (function () {
-    var menuBtn = document.getElementById('menu-btn');
-    var nav = document.getElementById('main-nav');
-
-    menuBtn.addEventListener('click', function () {
-      var open = nav.classList.toggle('open');
-      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      menuBtn.textContent = open ? '[ × ]' : '[ ≡ ]';
-    });
-
-    /* Close on nav link click (mobile) */
-    nav.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () {
-        nav.classList.remove('open');
-        menuBtn.setAttribute('aria-expanded', 'false');
-        menuBtn.textContent = '[ ≡ ]';
-      });
-    });
-  }());
-
-  /* ── Typing animation (hero prompt line) ─────────────────────────────── */
-  (function () {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    var lines = [
-      'uptime --since=2014',
-      'cat ./notes/pihole.md',
-      'ssh pi04.lobot.local',
-      'make deploy',
-    ];
-    var el = document.getElementById('typed-cmd');
-    var idx = 0;
-
-    function type() {
-      var full = lines[idx];
-      var i = 0;
-      el.textContent = '';
-      (function tick() {
-        if (i <= full.length) {
-          el.textContent = full.slice(0, i);
-          i++;
-          setTimeout(tick, 55 + Math.random() * 30);
-        } else {
-          setTimeout(function () {
-            idx = (idx + 1) % lines.length;
-            type();
-          }, 1800);
-        }
-      }());
-    }
-
-    type();
   }());
 </script>
 
