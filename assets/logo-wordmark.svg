@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 96" fill="none">
+  
+  <g font-family="JetBrains Mono, IBM Plex Mono, ui-monospace, monospace" font-weight="700" font-size="56" fill="currentColor">
+    <text x="0" y="64" opacity="0.55">[</text>
+    <text x="28" y="64" opacity="0.55">~</text>
+    <text x="60" y="64" opacity="0.55">]</text>
+    <text x="92" y="64" opacity="0.55">$</text>
+    <text x="138" y="64">lobot.io</text>
+  </g>
+  
+  <rect x="424" y="22" width="22" height="48" fill="currentColor"></rect>
+</svg>
