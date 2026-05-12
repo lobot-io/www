@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="404 — command not found · lobot.io"
+  description="That path doesn't exist on lobot.io."
+>
+  <main class="shell not-found" aria-labelledby="err-heading">
+
+    <p class="err-line" aria-hidden="true">lobot:~$ cd <span id="bad-path"></span></p>
+    <p class="err-line" aria-hidden="true">bash: cd: <span id="bad-path-2"></span>: No such file or directory</p>
+
+    <h1 id="err-heading"><span class="dim">404 —</span> command not found.</h1>
+
+    <p>That path doesn't exist here. Maybe it moved, maybe it never shipped.<br>
+    The rack knows nothing of it.</p>
+
+    <a href="/" class="back">$ cd ~  # go home</a>
+
+  </main>
+</Base>
+
+<script is:inline>
+  (function () {
+    var p = window.location.pathname || '/unknown';
+    document.getElementById('bad-path').textContent = p;
+    document.getElementById('bad-path-2').textContent = p;
+  }());
+</script>
