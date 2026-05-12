@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base>
+  <main class="main">
+
+    <!-- capsulebot — decorative, right side, reduced-motion CSS swap -->
+    <div class="capsulebot-wrap" aria-hidden="true">
+      <img class="mascot mascot-anim"   src="/assets/mascots/lobot-capsulebot-anim.svg" alt="" width="180" height="180">
+      <img class="mascot mascot-static" src="/assets/mascots/lobot-capsulebot.svg"      alt="" width="180" height="180">
+    </div>
+
+    <!-- centered shell — prompt sits at the bottom -->
+    <div class="shell main-shell">
+      <div class="prompt-wrap">
+        <div class="promptline" aria-hidden="true">
+          <span class="prompt-tok">lobot:~$</span>
+          <span class="cursor-block"></span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</Base>
