@@ -1,0 +1,109 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'lobot.io',
+  description = 'homelab, on purpose.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="/assets/css/colors_and_type.css">
+  <!-- APM: add PostHog or other analytics scripts here -->
+  <script is:inline>
+    (function () {
+      var t = localStorage.getItem('lobot-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    }());
+  </script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="brand" aria-label="lobot.io">
+      <span aria-hidden="true">$_</span><span class="dim">lobot.io</span>
+    </a>
+    <nav class="nav" aria-label="site navigation">
+      <button class="theme-btn" id="theme-btn" aria-label="toggle theme">◐ dark</button>
+    </nav>
+  </div>
+</header>
+
+<slot />
+
+<footer class="statusline" role="contentinfo" aria-label="system status">
+  <div class="statusline-inner">
+
+    <div class="sl-left">
+      <span class="sl-seg sl-warn" aria-live="polite" aria-label="lobot is not online yet">
+        <span class="warn-glyph" aria-hidden="true">!</span>
+        <span class="warn-text">lobot offline</span>
+      </span>
+
+      <span class="sl-sep sl-hide-xs" aria-hidden="true">│</span>
+      <span class="sl-seg sl-muted sl-hide-xs" aria-hidden="true">
+        c1 <span class="sl-bar">░░░░░░</span> <span class="sl-val">--</span>
+      </span>
+
+      <span class="sl-sep sl-hide-xs" aria-hidden="true">│</span>
+      <span class="sl-seg sl-muted sl-hide-xs" aria-hidden="true">
+        c2 <span class="sl-bar">░░░░░░</span> <span class="sl-val">--</span>
+      </span>
+
+      <span class="sl-sep sl-hide-sm" aria-hidden="true">│</span>
+      <span class="sl-seg sl-muted sl-hide-sm" aria-hidden="true">
+        evt <span class="sl-val">--</span>
+      </span>
+
+      <span class="sl-sep sl-hide-sm" aria-hidden="true">│</span>
+      <span class="sl-seg sl-muted sl-hide-sm" aria-hidden="true">
+        q <span class="sl-val">--</span>
+      </span>
+
+      <span class="sl-sep sl-hide-md" aria-hidden="true">│</span>
+      <span class="sl-seg sl-muted sl-hide-md" aria-hidden="true">
+        p50 <span class="sl-val">--</span>
+      </span>
+    </div>
+
+    <div class="sl-right">
+      <span class="sl-seg sl-muted">lobot.io · 2026</span>
+      <span class="sl-sep" aria-hidden="true">│</span>
+      <a href="https://github.com/lobot-io" class="sl-seg sl-link" rel="noopener noreferrer">gh</a>
+    </div>
+
+  </div>
+</footer>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('theme-btn');
+    var html = document.documentElement;
+    function applyTheme(t) {
+      html.setAttribute('data-theme', t);
+      localStorage.setItem('lobot-theme', t);
+      btn.textContent = t === 'dark' ? '◐ dark' : '◑ light';
+    }
+    btn.addEventListener('click', function () {
+      applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+    var saved = localStorage.getItem('lobot-theme') || 'dark';
+    btn.textContent = saved === 'dark' ? '◐ dark' : '◑ light';
+  }());
+</script>
+
+</body>
+</html>

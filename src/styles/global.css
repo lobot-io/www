@@ -1,0 +1,217 @@
+/* ============================================================================
+   lobot.io — page layout
+   Tokens live in assets/css/colors_and_type.css. This file is layout only.
+   Mobile-first: 360px portrait → 2560px+.
+   ============================================================================ */
+
+/* ---------- Reset --------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+img, svg { display: block; max-width: 100%; }
+
+/* ---------- Full-viewport flex shell ------------------------------------- */
+html { height: 100%; }
+body {
+  margin: 0; padding: 0;
+  min-height: 100dvh;           /* dvh = accounts for mobile browser chrome */
+  display: flex;
+  flex-direction: column;
+  /* Fluid base: 14px on phones, ~18px at 2560px */
+  font-size: clamp(14px, 0.65vw + 11.5px, 18px);
+}
+
+/* ---------- Top bar ------------------------------------------------------- */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  flex-shrink: 0;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--border-1);
+}
+.topbar-inner {
+  max-width: clamp(720px, 78vw, 1280px);
+  margin: 0 auto;
+  padding: clamp(12px, 1.6vw, 18px) clamp(20px, 4vw, 56px);
+  display: flex; align-items: center; gap: clamp(12px, 2vw, 32px);
+  font-family: var(--font-mono); font-size: 13px;
+}
+@media (min-width: 2000px) { .topbar-inner { max-width: 1440px; } }
+
+.brand {
+  display: inline-flex; align-items: baseline; gap: 6px;
+  text-decoration: none; color: var(--fg-1); font-weight: 700;
+  transition: color var(--dur-fast) var(--ease-out);
+  flex-shrink: 0;
+}
+.brand:hover { color: var(--fg-2); }
+.brand .dim { color: var(--fg-4); font-weight: 400; }
+
+.nav { display: flex; gap: clamp(14px, 1.6vw, 24px); margin-left: auto; align-items: center; }
+
+.theme-btn {
+  background: transparent; border: 1px solid var(--border-2);
+  color: var(--fg-2); font-family: var(--font-mono); font-size: 12px;
+  padding: 3px 8px; cursor: pointer; border-radius: 0;
+  transition: color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+.theme-btn:hover { color: var(--fg-1); border-color: var(--border-3); }
+
+/* ---------- Main content area -------------------------------------------- */
+/* flex: 1 → fills all space between topbar and statusline */
+.main {
+  flex: 1;
+  position: relative;          /* anchor for capsulebot absolute positioning */
+  overflow: hidden;
+}
+
+/* Centered column — same max-width rhythm as topbar */
+.shell {
+  max-width: clamp(720px, 78vw, 1280px);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 56px);
+}
+@media (min-width: 2000px) { .shell { max-width: 1440px; } }
+
+/* Main shell fills .main height so prompt can sit at the bottom */
+.main-shell {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Prompt pushed to the bottom of the main area */
+.prompt-wrap {
+  margin-top: auto;
+  padding: clamp(24px, 4vw, 56px) 0;
+}
+
+.promptline {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono);
+  font-size: clamp(13px, 1vw, 16px);
+  color: var(--fg-3);
+  user-select: none;
+}
+.promptline .prompt-tok { color: var(--fg-4); }
+
+/* ---------- Capsulebot ---------------------------------------------------- */
+.capsulebot-wrap {
+  position: absolute;
+  right: clamp(16px, 5vw, 80px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(96px, 12vw, 180px);
+  pointer-events: none;
+  z-index: 0;
+}
+.capsulebot-wrap img { width: 100%; height: auto; }
+
+/* Reduced-motion: show static, hide animated */
+.mascot-static { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .mascot-anim   { display: none; }
+  .mascot-static { display: block; }
+}
+
+/* Hide capsulebot on very narrow screens to avoid overlap */
+@media (max-width: 480px) { .capsulebot-wrap { display: none; } }
+
+/* ---------- Statusline ---------------------------------------------------- */
+/* Fixed to the bottom — always visible regardless of scroll. */
+.statusline {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  z-index: 10;
+  background: var(--bg-3);
+  border-top: 1px solid var(--border-2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-4);
+}
+
+/* Nudge body so content isn't hidden behind the fixed bar.
+   36px ≈ statusline line-height + vertical padding. */
+body { padding-bottom: 36px; }
+
+.statusline-inner {
+  max-width: clamp(720px, 78vw, 1280px);
+  margin: 0 auto;
+  padding: 7px clamp(20px, 4vw, 56px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-3);
+  overflow: hidden;
+}
+@media (min-width: 2000px) { .statusline-inner { max-width: 1440px; } }
+
+.sl-left, .sl-right {
+  display: flex; align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap; overflow: hidden;
+}
+.sl-right { flex-shrink: 0; }
+
+.sl-seg {
+  display: inline-flex; align-items: center; gap: 5px;
+  white-space: nowrap;
+  letter-spacing: var(--ls-wide); text-transform: uppercase;
+}
+
+.sl-sep { color: var(--border-3); flex-shrink: 0; }
+.sl-muted { color: var(--fg-4); }
+
+.sl-bar {
+  letter-spacing: 0;          /* prevent wide tracking on block chars */
+  color: var(--border-3);
+  font-size: 9px;
+  line-height: 1;
+}
+.sl-val { color: var(--fg-4); }
+
+.sl-link {
+  color: var(--fg-3); text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.sl-link:hover { color: var(--fg-1); }
+
+/* Warning segment — slightly brighter + pulsing glyph */
+.sl-warn { color: var(--fg-2); font-weight: 500; }
+
+.warn-glyph {
+  display: inline-block;
+  animation: sl-pulse 2.4s ease-in-out infinite;
+}
+.warn-text { color: var(--fg-3); }
+
+@keyframes sl-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.15; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .warn-glyph { animation: none; }
+}
+
+/* Responsive segment hiding — shed metrics as viewport shrinks */
+@media (max-width: 800px)  { .sl-hide-md { display: none; } }
+@media (max-width: 620px)  { .sl-hide-sm { display: none; } }
+@media (max-width: 440px)  { .sl-hide-xs { display: none; } }
+
+/* ---------- Scanline overlay on main (CRT flavor, dark only) -------------- */
+[data-theme="dark"] .main::after {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px, transparent 2px,
+    rgba(255,255,255,0.012) 2px, rgba(255,255,255,0.012) 3px
+  );
+  z-index: 1;
+}
+/* Capsulebot sits above scanlines */
+.capsulebot-wrap { z-index: 2; }
+
+/* ---------- Focus rings --------------------------------------------------- */
+*:focus-visible {
+  outline: 2px solid var(--fg-1);
+  outline-offset: 2px;
+}
