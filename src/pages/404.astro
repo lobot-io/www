@@ -19,12 +19,12 @@ import Base from '../layouts/Base.astro';
     <a href="/" class="back">$ cd ~  # go home</a>
 
   </main>
-</Base>
 
-<script is:inline>
-  (function () {
-    var p = window.location.pathname || '/unknown';
-    document.getElementById('bad-path').textContent = p;
-    document.getElementById('bad-path-2').textContent = p;
-  }());
-</script>
+  <script is:inline>
+    (function () {
+      var p = window.location.pathname || '/unknown';
+      document.getElementById('bad-path').textContent = p;
+      document.getElementById('bad-path-2').textContent = p;
+    }());
+  </script>
+</Base>
